@@ -1,0 +1,51 @@
+# Simple Configuration - 5000 Episodes
+
+
+training:
+  num_episodes: 5000
+  max_steps_per_episode: 80
+  learning_rate: 0.002  # Faster convergence for simple config
+  batch_size: 64
+  gamma: 0.99
+  epsilon_start: 1.0
+  epsilon_end: 0.01
+  epsilon_decay: 0.995  # Appropriate for simple config
+  target_update_frequency: 10
+  replay_buffer_size: 10000
+
+ppo:
+  clip_epsilon: 0.2
+  value_coef: 0.5
+  entropy_coef: 0.01
+  max_grad_norm: 0.5
+  ppo_epochs: 4
+  gae_lambda: 0.95
+
+network:
+  hidden_layers: [64, 64]  # Truly simpler network for simple config
+  activation: "relu"
+  use_batch_norm: false
+
+agents:
+  num_intelligence_agents: 2
+  num_data_collectors: 2
+  num_insight_generators: 1
+  communication_range: 5
+
+environment:
+  num_data_sources: 8
+  num_task_types: 4
+  reward_scale: 1.0
+  difficulty_levels: [1, 2, 3]
+
+evaluation:
+  eval_frequency: 250
+  num_eval_episodes: 10
+  save_frequency: 500
+
+logging:
+  log_dir: "logs"
+  use_tensorboard: true
+  use_wandb: false
+  wandb_project: "madison-rl"
+

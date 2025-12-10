@@ -1,0 +1,51 @@
+# Complex Configuration - 2000 Episodes
+
+
+training:
+  num_episodes: 2000
+  max_steps_per_episode: 100
+  learning_rate: 0.0005  # Slower learning for stability in complex config
+  batch_size: 128  # Larger batch for more stable updates
+  gamma: 0.99
+  epsilon_start: 1.0
+  epsilon_end: 0.01
+  epsilon_decay: 0.9995  # Slower decay for complex environments
+  target_update_frequency: 20  # Less frequent updates to prevent catastrophic forgetting
+  replay_buffer_size: 50000  # Larger buffer for complex config
+
+ppo:
+  clip_epsilon: 0.2
+  value_coef: 0.5
+  entropy_coef: 0.01
+  max_grad_norm: 0.5
+  ppo_epochs: 2  # Reduced to prevent overfitting
+  gae_lambda: 0.95
+
+network:
+  hidden_layers: [256, 256, 128]  # Larger network
+  activation: "relu"
+  use_batch_norm: false
+
+agents:
+  num_intelligence_agents: 5
+  num_data_collectors: 3
+  num_insight_generators: 3
+  communication_range: 5
+
+environment:
+  num_data_sources: 15
+  num_task_types: 7
+  reward_scale: 1.0
+  difficulty_levels: [1, 2, 3]
+
+evaluation:
+  eval_frequency: 100
+  num_eval_episodes: 10
+  save_frequency: 200
+
+logging:
+  log_dir: "logs"
+  use_tensorboard: true
+  use_wandb: false
+  wandb_project: "madison-rl"
+
